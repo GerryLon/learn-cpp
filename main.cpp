@@ -1,9 +1,11 @@
 #include <iostream>
 
+#include "lang/misc.h"
+
 using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    test_misc();
     return 0;
 }
