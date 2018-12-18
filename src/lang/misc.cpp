@@ -1,4 +1,5 @@
 #include "common/common.h"
+#include "Location.h"
 
 static int test_threeOps() {
     int a = 10;
@@ -84,6 +85,16 @@ static inline int test_inline() {
     return 0;
 }
 
+Location _returnLocation() {
+    Location loc(1, 2);
+    return loc;
+}
+
+static int test_Location() {
+    Location loc = _returnLocation();
+    return 0;
+}
+
 int test_misc() {
     test_threeOps();
     test_const();
@@ -91,6 +102,7 @@ int test_misc() {
     test_reference();
     test_default_param();
     test_inline();
+    test_Location();
 
     return 0;
 }
