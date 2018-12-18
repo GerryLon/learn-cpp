@@ -3,6 +3,6 @@
 
 #include <iostream>
 using namespace std;
-int printErrMsg(const char* filename, const char* func, const int line);
+int printErrMsg(const char* filename, const char* func, const unsigned int line);
 
 #endif // _COMMON_H

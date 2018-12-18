@@ -1,6 +1,6 @@
 #include "common/common.h"
 
-static test_threeOps() {
+static int test_threeOps() {
     int a = 10;
     int b = 20;
     (a < b ? a : b) = 30;
@@ -28,16 +28,69 @@ static int test_const() {
         printErrMsg(__FILE__, __func__, __LINE__);
     }
 
-    if (*p2 != 2) {
+    if (*p2 != 1) {
         printErrMsg(__FILE__, __func__, __LINE__);
     }
 
     return 0;
 }
 
+static int test_const2() {
+    const int a = 1;
+    int* p = (int*)&a;
+
+    *p = 2; // in c lang, a is 2 now, but in c++, a is also 1.
+
+    if (a != 1) {
+        printErrMsg(__FILE__, __func__, __LINE__);
+    }
+
+    return 0;
+}
+
+static int _returnInt() {
+    int a = 10;
+    return a;
+}
+
+static int test_reference() {
+    _returnInt();
+    // int a1 = _returnInt();
+
+    // invalid initialization of non-const reference of type 'int&' from an rvalue of type 'int'
+    // int& a2 = _returnInt();
+    // int a2 = 0;
+    // cout << a1 << " " << a2 << endl;
+
+    return 0;
+}
+
+static int test_default_param(int a = 3) {
+    if (a != 3) {
+        printErrMsg(__FILE__, __func__, __LINE__);
+    }
+    return 0;
+}
+
+static int _inline_max(int a, int b) {
+    return a > b ? a : b;
+}
+
+static inline int test_inline() {
+    if (_inline_max(2, 3) != 3) {
+        printErrMsg(__FILE__, __func__, __LINE__);
+        return -1;
+    }
+    return 0;
+}
+
 int test_misc() {
     test_threeOps();
     test_const();
+    test_const2();
+    test_reference();
+    test_default_param();
+    test_inline();
 
     return 0;
 }
