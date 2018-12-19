@@ -152,6 +152,8 @@ static int test_MyString() {
 
     s2 = s2 + " world";
     assert(s1 == s2);
+
+    // cout << s1 << " " << s2 << endl;
     return 0;
 }
 

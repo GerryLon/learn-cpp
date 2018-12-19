@@ -4,13 +4,13 @@
 
 using namespace std;
 
-ostream& operator<<(ostream &out, const MyString &str) {
-    out << str;
+ostream& operator<<(ostream &out, const MyString &s) {
+    out << s.m_s;
     return out;
 }
 
-istream& operator>>(istream& in, MyString &str) {
-    in >> str;
+istream& operator>>(istream& in, MyString &s) {
+    in >> s.m_s;
     return in;
 }
 
