@@ -95,6 +95,47 @@ static int test_Location() {
     return 0;
 }
 
+static int test_print_self() {
+    // ofstream outfile("misc.cpp");
+    ifstream infile(__FILE__);
+
+    if (!infile) {
+        cerr << "error: unable to open input file!\n";
+        return -1;
+    }
+//    if (!outfile ) {
+//        cerr << "error: unable to open output file!\n";
+//        return -2;
+//    }
+
+    string word;
+    while (infile >> word) {
+        // outfile << word << ' ';
+        // cout << word << ' '; // remove this comment
+    }
+    cout << endl;
+
+    if (infile) {
+        infile.close();
+    }
+
+    return 0;
+}
+
+static int test_new() {
+    int* arr = new int[10];
+    if (!arr) {
+        printErrMsg(__FILE__, __func__, __LINE__);
+        return -1;
+    }
+
+    if (arr) {
+        delete []arr;
+    }
+
+    return 0;
+}
+
 int test_misc() {
     test_threeOps();
     test_const();
@@ -103,6 +144,8 @@ int test_misc() {
     test_default_param();
     test_inline();
     test_Location();
+    test_print_self();
+    test_new();
 
     return 0;
 }
