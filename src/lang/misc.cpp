@@ -1,5 +1,7 @@
 #include "common/common.h"
 #include "Location.h"
+#include "MyString.h"
+#include <cassert>
 
 static int test_threeOps() {
     int a = 10;
@@ -136,6 +138,23 @@ static int test_new() {
     return 0;
 }
 
+static int test_MyString() {
+    MyString s1 = "hello";
+    assert(s1 == "hello");
+    assert(s1 > "hella");
+
+    MyString s2(s1);
+    assert(s1 == s2);
+
+    s1 += " world";
+    assert(s1 == "hello world");
+    assert(s1 != s2);
+
+    s2 = s2 + " world";
+    assert(s1 == s2);
+    return 0;
+}
+
 int test_misc() {
     test_threeOps();
     test_const();
@@ -146,6 +165,7 @@ int test_misc() {
     test_Location();
     test_print_self();
     test_new();
+    test_MyString();
 
     return 0;
 }
