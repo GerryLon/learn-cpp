@@ -1,5 +1,5 @@
-#ifndef _LOCATION_H
-#define _LOCATION_H
+#ifndef _LANG_LOCATION_H
+#define _LANG_LOCATION_H
 
 #include "common/common.h"
 
@@ -12,10 +12,11 @@ class Location
         virtual ~Location();
 
     protected:
+        string name;
 
     private:
         int x;
         int y;
 };
 
-#endif // _LOCATION_H
+#endif // _LANG_LOCATION_H

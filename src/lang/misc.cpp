@@ -1,6 +1,7 @@
 #include "common/common.h"
 #include "Location.h"
 #include "MyString.h"
+#include "Worker.h"
 #include <cassert>
 
 static int test_threeOps() {
@@ -89,6 +90,7 @@ static inline int test_inline() {
 
 Location _returnLocation() {
     Location loc(1, 2);
+//    loc.name = "sz"; // access protected error
     return loc;
 }
 
@@ -157,6 +159,17 @@ static int test_MyString() {
     return 0;
 }
 
+int test_inherit() {
+//    Worker w = Worker("tom", 100);
+//    w.print();
+//
+//    Worker w2 = Worker("jerry", 200);
+//    w2.print();
+//    w.print();
+
+    return 0;
+}
+
 int test_misc() {
     test_threeOps();
     test_const();
@@ -168,6 +181,7 @@ int test_misc() {
     test_print_self();
     test_new();
     test_MyString();
+    test_inherit();
 
     return 0;
 }
