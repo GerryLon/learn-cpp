@@ -167,6 +167,9 @@ int test_inherit() {
 //    w2.print();
 //    w.print();
 
+    Person* p = new Worker("tom", 100);
+    p->print();
+
     return 0;
 }
 

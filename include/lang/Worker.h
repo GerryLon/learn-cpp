@@ -8,9 +8,9 @@ class Worker : public Person
 {
     public:
         Worker();
-        ~Worker();
+        virtual ~Worker();
         Worker(string name, int salary);
-        void print();
+        virtual void print();
 
     protected:
 

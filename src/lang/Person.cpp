@@ -13,3 +13,7 @@ Person::~Person()
 void Person::eat() {
     cout << this->m_name << " eating" << endl;
 }
+
+void Person::print() {
+    cout << "Person::print() " << this->m_name << endl;
+}
