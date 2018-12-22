@@ -3,6 +3,7 @@
 #include "MyString.h"
 #include "Worker.h"
 #include <cassert>
+#include <typeinfo>
 
 static int test_threeOps() {
     int a = 10;
@@ -159,13 +160,16 @@ static int test_MyString() {
     return 0;
 }
 
-int test_inherit() {
-//    Worker w = Worker("tom", 100);
-//    w.print();
-//
-//    Worker w2 = Worker("jerry", 200);
-//    w2.print();
-//    w.print();
+int test_inherit(bool open) {
+    if (!open) {
+        return 0;
+    }
+    Worker w = Worker("tom", 100);
+    w.print();
+
+    Worker w2 = Worker("jerry", 200);
+    w2.print();
+    w.print();
 
     Person* p = new Worker("tom", 100);
     p->print();
@@ -184,7 +188,7 @@ int test_misc() {
     test_print_self();
     test_new();
     test_MyString();
-    test_inherit();
+    test_inherit(false);
 
     return 0;
 }

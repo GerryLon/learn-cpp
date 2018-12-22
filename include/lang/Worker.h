@@ -4,7 +4,7 @@
 #include "Person.h"
 
 
-class Worker : public Person
+class Worker : virtual public Person
 {
     public:
         Worker();

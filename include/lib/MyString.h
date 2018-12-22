@@ -6,17 +6,17 @@
 class MyString
 {
     // 重载 << 操作符
-	friend std::ostream& operator<<(std::ostream &out, const MyString &str);
+	friend std::ostream& operator<<(std::ostream &out, const MyString& str);
 
 	// 重载 >> 操作符
-	friend std::istream& operator>>(std::istream& in, MyString &str);
+	friend std::istream& operator>>(std::istream& in, MyString& str);
 
     public:
         MyString();                         // 无参构造
         MyString(const char *s);            // 有参构造
         MyString(int len, char c = '\0');   // 有参构造
         MyString(const MyString &s);        // 拷贝构造
-        ~MyString();                        // 析构函数
+        virtual ~MyString();                        // 析构函数
 
     // 重载=、[]操作符
     public:

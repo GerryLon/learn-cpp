@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cassert>
 
 using namespace std;
 int printErrMsg(const char* filename, const char* func, const unsigned int line);
