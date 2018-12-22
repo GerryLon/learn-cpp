@@ -5,6 +5,29 @@
 #include <cassert>
 #include <typeinfo>
 
+class C {
+
+public:
+    // overload ==
+    bool operator==(int i) const {
+        return this->m_a == i;
+    }
+
+    /* explicit */ C(int i = 0) {
+        m_a = i;
+    }
+
+private:
+    int m_a;
+};
+
+static int test_explicit() {
+    C c;
+    c = 2; // C的构造函数有explicit时, 会报错
+    assert(c == 2);
+    return 0;
+}
+
 static int test_threeOps() {
     int a = 10;
     int b = 20;
@@ -178,6 +201,7 @@ int test_inherit(bool open) {
 }
 
 int test_misc() {
+    test_explicit();
     test_threeOps();
     test_const();
     test_const2();
