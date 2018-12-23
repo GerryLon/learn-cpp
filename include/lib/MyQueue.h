@@ -75,8 +75,8 @@ class MyQueue
 
         // visit() return false means exit QueueTraverse()
         int QueueTraverse(bool (*visit)(T& element)) {
-            for (int i = 0; i < this->m_iLength; i++) {
-                if (!visit(this->m_pQueue[i % this->m_iLength])) {
+            for (int i = this->m_iHead; i < this->m_iLength + this->m_iHead; i++) {
+                if (!visit(this->m_pQueue[i % this->m_iCapacity])) {
                     break;
                 }
             }

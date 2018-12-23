@@ -30,11 +30,19 @@ static int test_MyQueue() {
     q.DeQueue(i);
     assert(i == 1);
 
+    // 2, 3
+    // q.QueueTraverse(printElement);
+    // cout << endl;
+
     q.DeQueue(i);
     assert(i == 2);
+    // 3
+    // q.QueueTraverse(printElement);
 
     q.DeQueue(i);
     assert(i == 3);
+
+    assert(q.QueueEmpty());
 
     return 0;
 }
