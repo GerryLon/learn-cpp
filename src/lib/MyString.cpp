@@ -1,6 +1,6 @@
-#include "common/common.h"
+#include "../../include/common/common.h"
 #include <string.h>
-#include "MyString.h"
+#include "../../include/lib/MyString.h"
 
 using namespace std;
 

@@ -1,7 +1,7 @@
 #ifndef _LANG_LOCATION_H
 #define _LANG_LOCATION_H
 
-#include "common/common.h"
+#include "../common/common.h"
 
 class Location
 {

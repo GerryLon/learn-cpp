@@ -1,7 +1,7 @@
-#include "common/common.h"
-#include "Location.h"
-#include "MyString.h"
-#include "Worker.h"
+#include "../../include/common/common.h"
+#include "../../include/lang/Location.h"
+#include "../../include/lib/MyString.h"
+#include "../../include/lang/Worker.h"
 #include <cassert>
 #include <typeinfo>
 

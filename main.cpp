@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "lang/misc.h"
-#include "lang/stl.h"
+#include "include/lang/misc.h"
+#include "include/lang/stl.h"
 #include  "test/lib_test.h"
 
 using namespace std;

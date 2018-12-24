@@ -1,12 +1,13 @@
-#include "common/common.h"
-#include "MyQueue.h"
+#include "../include/common/common.h"
+#include "../include/lib/MyQueue.h"
+#include "../include/lib/MyStack.h"
 #include "lib_test.h"
 using namespace std;
 using namespace ds;
 
-// print number great than 1
-static bool gt1(int& a) {
-    if (a > 1) {
+// print number great than some number
+static bool gt(int& a) {
+    if (a > 10) {
         cout << a << endl;
     }
 
@@ -18,14 +19,14 @@ static int test_MyQueue() {
     MyQueue<int> q(3);
     assert(q.QueueEmpty());
 
-    q.EnQueue(1);
-    q.EnQueue(2);
+    assert(q.EnQueue(1));
+    assert(q.EnQueue(2));
     assert(q.QueueLength() == 2);
-    q.EnQueue(3);
+    assert(q.EnQueue(3));
     assert(q.QueueFull());
 
     // q.QueueTraverse(printElement);
-    // q.QueueTraverse(gt1);
+    q.QueueTraverse(gt);
 
     q.DeQueue(i);
     assert(i == 1);
@@ -47,7 +48,34 @@ static int test_MyQueue() {
     return 0;
 }
 
+static int test_MyStack() {
+    MyStack<string> s(3);
+    assert(s.stackEmpty());
+    assert(s.push("aa"));
+    assert(s.push("bb"));
+    assert(s.push("cc"));
+
+    assert(s.stackLength() == 3);
+    assert(!s.stackEmpty());
+    // s.stackTraverse(printElement);
+
+    string str;
+    s.pop(str);
+    assert(str == "cc");
+
+    s.pop(str);
+    assert(str == "bb");
+
+    s.pop(str);
+    assert(str == "aa");
+
+    assert(s.stackEmpty());
+
+    return 0;
+}
+
 int test_lib() {
     test_MyQueue();
+    test_MyStack();
     return 0;
 }

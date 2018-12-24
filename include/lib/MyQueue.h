@@ -4,7 +4,7 @@
 // 模板类定义和实现要写在一个文件里
 // https://stackoverflow.com/questions/495021/why-can-templates-only-be-implemented-in-the-header-file
 
-#include "common/common.h"
+#include "../common/common.h"
 
 // ring queue
 namespace ds {
