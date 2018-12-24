@@ -1,6 +1,7 @@
 #include "../include/common/common.h"
 #include "../include/lib/MyQueue.h"
 #include "../include/lib/MyStack.h"
+#include "../include/lib/MyLinearList.h"
 #include "lib_test.h"
 #include <string.h>
 using namespace std;
@@ -166,10 +167,51 @@ static int test_bracketsMatch() {
     return 0;
 }
 
+static int test_MyLinearList() {
+    MyLinearList<int> list(5);
+    int a;
+
+    assert(list.ListEmpty());
+    assert(list.ListLength() == 0);
+
+    list.ListInsert(0, 1); // 1
+    list.ListInsert(0, 2); // 2, 1
+    list.ListInsert(0, 3); // 3, 2, 1
+    list.ListInsert(3, 4); // 3, 2, 1, 4
+
+    // list.ListTraverse(printElement);
+
+    a = 3;
+    assert(list.LocateElem(a) == 0);
+    assert(!list.ListFull());
+    list.ListInsert(2, 5); // 3, 2, 5, 1, 4
+    // list.ListTraverse(printElement);
+    assert(list.ListFull());
+
+    list.GetElem(3, a); // get will return 1
+    assert(a == 1);
+
+    list.PriorElem(2, a);
+    assert(a == 3);
+
+    list.NextElem(2, a);
+    assert(a == 5);
+
+    while(!list.ListEmpty()) {
+        list.ListDelete(list.ListLength() - 1, a); // 4, 1, 5, 2, 3
+    }
+    assert(a == 3);
+    list.ListTraverse(printElement);
+    assert(list.ListEmpty());
+
+    return 0;
+}
+
 int test_lib() {
     test_MyQueue();
     test_MyStack();
     test_radixTransform();
     test_bracketsMatch();
+    test_MyLinearList();
     return 0;
 }
