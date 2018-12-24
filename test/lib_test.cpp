@@ -2,6 +2,8 @@
 #include "../include/lib/MyQueue.h"
 #include "../include/lib/MyStack.h"
 #include "../include/lib/MyLinearList.h"
+#include "../include/lib/MyLinkedList.h"
+#include "../include/lib/MyLinkedList.h"
 #include "lib_test.h"
 #include <string.h>
 using namespace std;
@@ -207,11 +209,62 @@ static int test_MyLinearList() {
     return 0;
 }
 
+template <class T>
+static bool visitNode(Node<T>& node) {
+    cout << node.data << endl;
+    return true;
+}
+
+static int test_MyLinkedList() {
+    MyLinkedList<string> list;
+    Node<string> tmp;
+    assert(list.ListLength() == 0);
+    assert(list.ListEmpty());
+
+    Node<string> node1 = Node<string>("aa");
+    list.ListInsert(0, &node1);
+    assert(list.ListLength() == 1);
+    assert(!list.ListEmpty());
+
+    Node<string> node2 = Node<string>("bb");
+    list.ListInsert(1, &node2); // aa->bb
+    assert(list.ListLength() == 2);
+
+    Node<string> node3 = Node<string>("cc");
+    list.ListInsert(2, &node3); // aa->bb->cc
+    assert(list.ListLength() == 3);
+
+    // list.ListTraverse(visitNode);
+
+    assert(list.GetElem(1, &tmp));
+    assert(tmp.data == "bb");
+
+    assert(list.LocateElem(&node3) == 2);
+
+    list.ListDelete(0, &tmp);
+    assert(list.ListLength() == 2);
+    assert(tmp.data == "aa");
+
+    // list.ListTraverse(visitNode);
+
+    list.ListDelete(0, &tmp);
+    assert(list.ListLength() == 1);
+    assert(tmp.data == "bb");
+
+    list.ListDelete(0, &tmp);
+    assert(list.ListLength() == 0);
+    assert(tmp.data == "cc");
+    list.ClearList();
+    return 0;
+
+}
+
 int test_lib() {
     test_MyQueue();
     test_MyStack();
     test_radixTransform();
     test_bracketsMatch();
     test_MyLinearList();
+    test_MyLinkedList();
     return 0;
 }
