@@ -16,14 +16,14 @@ public:
     }
 
     ~MyStack() {
-        this->cleanStack();
+        this->clearStack();
         if (this->m_pStack) {
             delete []this->m_pStack;
         }
     }
 
-    int cleanStack() {
-        this->m_iTop = 0;
+    int clearStack() {
+        this->m_iTop = -1;
         return 0;
     }
 
@@ -52,6 +52,14 @@ public:
             return false;
         }
         this->m_pStack[++this->m_iTop] = element;
+        return true;
+    }
+
+    bool peek(T& element) const {
+        if (this->stackEmpty()) {
+            return false;
+        }
+        element = this->m_pStack[this->m_iTop];
         return true;
     }
 

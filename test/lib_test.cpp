@@ -50,16 +50,24 @@ static int test_MyQueue() {
 
 static int test_MyStack() {
     MyStack<string> s(3);
+    string str;
+
     assert(s.stackEmpty());
+    assert(!s.peek(str));
+
     assert(s.push("aa"));
+    assert(s.peek(str));
+    assert(str == "aa");
+
     assert(s.push("bb"));
     assert(s.push("cc"));
 
+    assert(s.peek(str));
+    assert(str == "cc");
     assert(s.stackLength() == 3);
     assert(!s.stackEmpty());
     // s.stackTraverse(printElement);
 
-    string str;
     s.pop(str);
     assert(str == "cc");
 
@@ -69,6 +77,9 @@ static int test_MyStack() {
     s.pop(str);
     assert(str == "aa");
 
+    assert(!s.peek(str));
+    assert(s.stackEmpty());
+    s.clearStack();
     assert(s.stackEmpty());
 
     return 0;
