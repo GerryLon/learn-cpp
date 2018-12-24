@@ -63,10 +63,18 @@ public:
         return true;
     }
 
-    int stackTraverse(bool (*visit)(T& element)) {
-        for (int i = 0, len = this->stackLength(); i < len; i++) {
-            if (!visit(this->m_pStack[i])) {
-                break;
+    int stackTraverse(bool (*visit)(T& element), bool isFromBottom = true) {
+        if (isFromBottom) {
+            for (int i = 0, len = this->stackLength(); i < len; i++) {
+                if (!visit(this->m_pStack[i])) {
+                    break;
+                }
+            }
+        } else {
+            for (int i = this->stackLength() - 1; i >= 0; i--) {
+                if (!visit(this->m_pStack[i])) {
+                    break;
+                }
             }
         }
         return 0;
