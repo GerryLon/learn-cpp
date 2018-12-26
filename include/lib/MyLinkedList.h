@@ -28,30 +28,40 @@ MyLinkedList() {
     Node<T>* node = new Node<T>(NULL, NULL);
 
     head = tail = node;
-    head->next = head->prev = tail;
-    tail->prev = tail->next = head;
-
-    this->m_iLength = 0;
+    reset();
 }
 
 ~MyLinkedList() {
-
-    Node<T>* tmp = head;
-    while (head != NULL && head != tail) {
-        head = head->next;
-        delete tmp;
-        tmp = head;
-    }
-
-    if (head) { // tail
-        delete head;
-    }
+    ClearList();
+    delete head;
     head = NULL;
+
+    delete tail;
     tail = NULL;
 }
 
-int ClearList() {
+int reset() {
+    head->next = head->prev = tail;
+    tail->prev = tail->next = head;
     this->m_iLength = 0;
+    return 0;
+}
+
+int ClearList() {
+    if (ListEmpty()) {
+        return 0;
+    }
+
+    Node<T>* currNode = head->next;
+    Node<T>* tmp;
+
+    // delete nodes except head and tail
+    while (currNode != tail) {
+        tmp = currNode->next;
+        delete currNode;
+        currNode = tmp;
+    }
+    reset();
     return 0;
 }
 
