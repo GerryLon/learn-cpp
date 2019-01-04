@@ -239,6 +239,8 @@ static int test_MyLinkedList() {
     assert(list.GetElem(1, &tmp));
     assert(tmp.data == "bb");
 
+    assert(!list.GetElem(9999, &tmp));
+
     assert(list.LocateElem(&node3) == 2);
 
     list.ListDelete(0, &tmp);

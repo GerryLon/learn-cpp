@@ -27,6 +27,11 @@ static int test_vector() {
 
     assert(v.front() == 1);
     assert(v.back() == 9);
+
+    v.erase(v.begin(), v.begin() + 3);
+    assert(v.size() == 6);
+    assert(v.front() == 4);
+    assert(v.back() == 9);
     return 0;
 }
 

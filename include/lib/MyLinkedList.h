@@ -83,7 +83,8 @@ bool GetElem(int index, Node<T>* node /* out */) const {
     }
 
     Node<T>* tmp = this->head->next;
-    for (int i = 0; i != index; i++, tmp = tmp->next) {
+    int i = 0;
+    for (; i < index; i++, tmp = tmp->next) {
         ;
     }
 
