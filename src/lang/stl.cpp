@@ -1,5 +1,6 @@
 #include "../../include/lang/stl.h"
 #include <vector>
+#include <deque>
 #include <list>
 #include <string>
 #include <map>
@@ -32,6 +33,33 @@ static int test_vector() {
     assert(v.size() == 6);
     assert(v.front() == 4);
     assert(v.back() == 9);
+    return 0;
+}
+
+static int test_deque() {
+    deque<int> dq;
+    const int num = 10;
+
+    for (int i = 0; i < num; i++) {
+        dq.push_front(i);
+    }
+
+    for (int i = 0; i < num; i++) {
+        assert(dq.front() == num - 1 - i); // 9 8 ... 1
+        dq.pop_front();
+    }
+
+    for (int i = 0; i < num; i++) {
+        dq.push_back(i);
+    }
+
+    assert(dq.size() == num);
+
+    for (int i = 0; i < num; i++) {
+        assert(dq.back() == num - 1 - i); // 9 8 ... 1
+        dq.pop_back();
+    }
+
     return 0;
 }
 
@@ -81,6 +109,7 @@ static int test_map() {
 
 int test_stl() {
     test_vector();
+    test_deque();
     test_list();
     test_map();
     return 0;
