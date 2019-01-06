@@ -1,9 +1,11 @@
 #include "../../include/lang/stl.h"
 #include <vector>
 #include <deque>
+#include <stack>
 #include <list>
 #include <string>
 #include <map>
+#include <algorithm>
 
 static int test_vector() {
     vector<int> v;
@@ -63,6 +65,40 @@ static int test_deque() {
     return 0;
 }
 
+// 十进制转2-36进制
+static string decimalToAny(int num, int base) {
+    assert(num >= 0);
+    assert(base >= 2 && base <= 36);
+    stack<char> s;
+    const char* mapping = "0123456789ABCDEFGHIGKLMNOPQRSTUVWXYZ"; // 0 -> 36
+
+    // string source(str);
+    // transform(source.begin(), source.end(), source.begin(), ::toupper); // toupper
+
+    while (num != 0) {
+        s.push(mapping[num % base]);
+        num = num / base;
+    }
+
+    if (s.empty()) {
+        return string(1, mapping[num]);
+    }
+
+    string dst;
+    while (!s.empty()) {
+        dst = dst + s.top();
+        s.pop();
+    }
+
+    return dst;
+}
+
+static int test_stack() {
+    assert(decimalToAny(100, 16) == "64");
+
+    return 0;
+}
+
 static int test_list() {
     list<int> v;
     const int len = 10;
@@ -92,13 +128,13 @@ static int test_list() {
 static int test_map() {
     map<string, string> m;
     pair<string, string> p("hello", "world");
-    pair<string, string> p2("shanghai", "��");
+    pair<string, string> p2("shanghai", "»¦");
     m.insert(p);
     m.insert(p2);
 
     assert(m.size() == 2);
     assert(m["hello"] == "world");
-    assert(m["shanghai"] == "��");
+    assert(m["shanghai"] == "»¦");
 
     map<string, string>::iterator iter = m.begin();
     for(; iter != m.end(); iter++) {
@@ -110,6 +146,7 @@ static int test_map() {
 int test_stl() {
     test_vector();
     test_deque();
+    test_stack();
     test_list();
     test_map();
     return 0;
